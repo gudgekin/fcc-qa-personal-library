@@ -16,6 +16,7 @@ suite('Functional Tests', function() {
   */
   test('#example Test GET /api/books', function(done){
      chai.request(server)
+      .keepOpen()
       .get('/api/books')
       .end(function(err, res){
         assert.equal(res.status, 200);
@@ -38,6 +39,7 @@ suite('Functional Tests', function() {
       // TEST 1
       test('Test POST /api/books with title', function(done) {
         chai.request(server)
+          .keepOpen()
           .post('/api/books')
           .send({
               title: 'Functional Test Book'
@@ -59,6 +61,7 @@ suite('Functional Tests', function() {
       // TEST 2
       test('Test POST /api/books with no title given', function(done) {
         chai.request(server)
+            .keepOpen()
             .post('/api/books')
             .send({
                 title: ''
@@ -79,6 +82,7 @@ suite('Functional Tests', function() {
       // TEST 3
       test('Test GET /api/books',  function(done){
         chai.request(server)
+            .keepOpen()
             .get('/api/books')
             .end(function(err, res) {
                 assert.equal(res.status, 200);
@@ -104,6 +108,7 @@ suite('Functional Tests', function() {
       test('Test GET /api/books/[id] with id not in db',  function(done) {
 
         chai.request(server)
+        .keepOpen()
         .get('/api/books/' + invalidBookID) // fake ID
         .end(function(err, res) {
             assert.equal(res.status, 200);
@@ -117,6 +122,7 @@ suite('Functional Tests', function() {
       test('Test GET /api/books/[id] with valid id in db',  function(done){
 
         chai.request(server)
+        .keepOpen()
         .get('/api/books/' + testBookID) 
         .end(function(err, res) {
             assert.equal(res.status, 200);
@@ -140,6 +146,7 @@ suite('Functional Tests', function() {
       test('Test POST /api/books/[id] with comment', function(done) {
 
         chai.request(server)
+        .keepOpen()
         .post('/api/books/' + testBookID) // Use the ID saved from Test 2
         .send({
             comment: 'This is a test comment.'
@@ -164,6 +171,7 @@ suite('Functional Tests', function() {
       test('Test POST /api/books/[id] without comment field', function(done) {
 
         chai.request(server)
+        .keepOpen()
         .post('/api/books/' + testBookID) 
         .send({
             comment: ''
@@ -180,6 +188,7 @@ suite('Functional Tests', function() {
       test('Test POST /api/books/[id] with comment, id not in db', function(done) {
 
         chai.request(server)
+        .keepOpen()
         .post('/api/books/' + invalidBookID) // Use the fake ID
         .send({
             comment: 'Should not save'
@@ -201,6 +210,7 @@ suite('Functional Tests', function() {
       test('Test DELETE /api/books/[id] with valid id in db', function(done){
 
         chai.request(server)
+        .keepOpen()
         .delete('/api/books/' + testBookID) // Use the ID saved from Test 2
         .end(function(err, res) {
             assert.equal(res.status, 200);
@@ -214,6 +224,7 @@ suite('Functional Tests', function() {
       test('Test DELETE /api/books/[id] with  id not in db', function(done){
 
         chai.request(server)
+        .keepOpen()
         .delete('/api/books/' + invalidBookID) // Use the fake ID
         .end(function(err, res) {
             assert.equal(res.status, 200);
