@@ -236,18 +236,20 @@ suite('Functional Tests', function() {
 
     }); // end Suite DELETE [id]
 
-    /*
+
     // TEST 11
     test('Test DELETE /api/books/ => delete all books', function(done) {
-      chai.request(server)
-          .delete('/api/books')
-          .end(function(err, res) {
-              assert.equal(res.status, 200);
-              assert.equal(res.text, 'complete delete successful');
-              done();
-          });
+    chai.request(server)
+        .keepOpen()
+        .delete('/api/books')
+        .end(function(err, res) {
+            if (err) return done(err); 
+            assert.equal(res.status, 200);
+            assert.equal(res.text, 'complete delete successful');
+            done();
+        });
       }); // end TEST 11
-      */
+
 
   });
 
