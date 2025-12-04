@@ -10,10 +10,8 @@ suite('Functional Tests', function() {
   let testBookID; 
   let invalidBookID = '5871dda29f8f2038743129e0';
 
-  /*
-  * ----[EXAMPLE TEST]----
-  * Each test should completely test the response of the API end-point including response status code!
-  */
+//----[EXAMPLE TEST]----
+ /*
   test('#example Test GET /api/books', function(done){
      chai.request(server)
       .keepOpen()
@@ -27,9 +25,9 @@ suite('Functional Tests', function() {
         done();
       });
   });
-  /*
-  * ----[END of EXAMPLE TEST]----
   */
+// ----[END of EXAMPLE TEST]----
+
 
   // The BIG ROUTING TESTS SUITE IN THE SKY
   suite('Routing tests', function() {
