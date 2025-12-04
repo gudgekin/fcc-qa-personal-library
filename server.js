@@ -1,15 +1,27 @@
 'use strict';
 
+require('dotenv').config();
 const express     = require('express');
+const mongoose = require('mongoose');
 const bodyParser  = require('body-parser');
 const cors        = require('cors');
-require('dotenv').config();
 
 const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
 const runner            = require('./test-runner');
 
 const app = express();
+
+// --- START: NEW CODE FOR MONGODB CONNECTION ---
+// server.js (New, Fixed code)
+mongoose.connect(process.env.DB) // <-- Connect without the options object
+.then(() => {
+    console.log('Successfully connected to MongoDB.');
+})
+.catch((err) => {
+    console.error('MongoDB connection error:', err);
+});
+// --- END: NEW CODE FOR MONGODB CONNECTION ---
 
 app.use('/public', express.static(process.cwd() + '/public'));
 
